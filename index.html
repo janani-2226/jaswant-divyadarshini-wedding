@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Jaswant & Divya Darshini · Wedding Invitation</title>
+<meta name="description" content="Wedding of Jaswant and Divya Darshini, 14 February 2027, Taj Hotel Coimbatore." />
+<meta name="theme-color" content="#0b0504" />
+
+<!-- Link preview for WhatsApp / Instagram / Facebook.
+     After deploying, replace SITE_URL below with your real link, e.g. https://jaswant-divyadarshini.vercel.app -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Jaswant & Divya Darshini · Wedding Invitation" />
+<meta property="og:description" content="Sunday, 14 February 2027 · Taj Hotel, Coimbatore. Tap to open the temple doors." />
+<meta property="og:image" content="SITE_URL/og-image.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:url" content="SITE_URL" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%AA%94%3C/text%3E%3C/svg%3E" />
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,500&family=Noto+Serif+Tamil:wght@500&display=swap" rel="stylesheet">
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          kumkum: '#6B0F1A',
+          night: '#0b0504',
+          turmeric: '#E3A72F',
+          brass: '#B8862B',
+          sandal: '#F7E7C6'
+        },
+        fontFamily: {
+          display: ['Marcellus', 'Georgia', 'serif'],
+          serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+          tamil: ['"Noto Serif Tamil"', 'serif']
+        }
+      }
+    }
+  }
+</script>
+
+<!-- Three.js (real-time 3D) -->
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+
+<style>
+  html, body { background: #0b0504; color: #F7E7C6; }
+  body.locked { overflow: hidden; height: 100%; }
+  #scene { position: fixed; inset: 0; width: 100%; height: 100%; display: block; z-index: 0; }
+
+  /* Cinematic vignette + bottom shade for text legibility */
+  .vignette { position: fixed; inset: 0; pointer-events: none; z-index: 1;
+    background: radial-gradient(ellipse at 50% 42%, transparent 45%, rgba(6,2,1,.78) 100%); }
+  .shade { position: fixed; inset: auto 0 0 0; height: 55vh; pointer-events: none; z-index: 1;
+    background: linear-gradient(to top, rgba(6,2,1,.85), rgba(6,2,1,.35) 55%, transparent);
+    opacity: 0; transition: opacity 2s ease; }
+  body.entered .shade { opacity: 1; }
+
+  .gold-text {
+    background: linear-gradient(100deg, #9c6f22 0%, #FFE7A3 28%, #E3A72F 46%, #FFF3C9 56%, #9c6f22 82%);
+    background-size: 250% 100%;
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    animation: shimmer 7s linear infinite;
+    filter: drop-shadow(0 2px 14px rgba(0,0,0,.65));
+  }
+  @keyframes shimmer { to { background-position: -250% 0; } }
+
+  .glow-shadow { text-shadow: 0 2px 18px rgba(0,0,0,.9), 0 0 2px rgba(0,0,0,.8); }
+
+  .card {
+    background: rgba(16,7,5,.62);
+    -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+    border: 1px solid rgba(227,167,47,.45);
+    box-shadow: inset 0 0 0 6px rgba(16,7,5,.55), inset 0 0 0 7px rgba(227,167,47,.25), 0 30px 80px rgba(0,0,0,.5);
+  }
+
+  /* Staggered hero reveal after entering the temple */
+  .hero-in { opacity: 0; transform: translateY(18px); transition: opacity 1.6s ease, transform 1.6s cubic-bezier(.2,.8,.2,1); }
+  body.entered .hero-in { opacity: 1; transform: none; }
+  body.entered .hero-in.d1 { transition-delay: .2s; }
+  body.entered .hero-in.d2 { transition-delay: .7s; }
+  body.entered .hero-in.d3 { transition-delay: 1.2s; }
+  body.entered .hero-in.d4 { transition-delay: 1.7s; }
+
+  .hint { animation: hintPulse 2.4s ease-in-out infinite; }
+  @keyframes hintPulse { 0%,100% { opacity: .55; } 50% { opacity: 1; } }
+
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 1.1s ease, transform 1.1s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+
+  #loader .ring { width: 46px; height: 46px; border-radius: 50%; border: 2px solid rgba(227,167,47,.2); border-top-color: #E3A72F; animation: spin 1.1s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  a:focus-visible, button:focus-visible { outline: 2px solid #E3A72F; outline-offset: 4px; }
+
+  /* Fallback background if 3D can't run */
+  body.no3d { background: radial-gradient(ellipse at 50% 20%, #5a1a12 0%, #1a0907 55%, #0b0504 100%) fixed; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition-duration: .01ms !important; transition-delay: 0s !important; }
+  }
+</style>
+</head>
+<body class="locked font-serif antialiased">
+
+<canvas id="scene" aria-hidden="true"></canvas>
+<div class="vignette"></div>
+<div class="shade"></div>
+
+<!-- Loader -->
+<div id="loader" class="fixed inset-0 z-50 flex flex-col items-center justify-center gap-5 bg-night transition-opacity duration-1000">
+  <div class="ring"></div>
+  <p class="font-display text-turmeric/90 tracking-wide">Lighting the lamps</p>
+</div>
+
+<!-- Temple gate prompt -->
+<div id="gateUI" class="pointer-events-none fixed inset-x-0 bottom-0 z-20 flex flex-col items-center gap-3 text-center px-6 pb-[max(2.5rem,env(safe-area-inset-bottom))] transition-opacity duration-700">
+  <p class="font-tamil text-turmeric text-lg glow-shadow">திருமண அழைப்பிதழ்</p>
+  <p class="font-serif italic text-sandal text-xl glow-shadow">Jaswant &amp; Divya Darshini</p>
+  <p class="hint mt-2 font-display text-sm text-turmeric/90 glow-shadow">Tap the temple doors to enter</p>
+</div>
+
+<main id="content" class="relative z-10 opacity-0 pointer-events-none transition-opacity duration-[1500ms]">
+
+  <!-- HERO -->
+  <section class="min-h-[100svh] flex flex-col items-center justify-end text-center px-6 pb-20 pt-24">
+    <p class="hero-in d1 font-display text-turmeric text-sm sm:text-base tracking-[.18em] glow-shadow">With the blessings of the Almighty</p>
+    <p class="hero-in d1 font-serif italic text-sandal/90 text-lg mt-2 glow-shadow">we joyfully invite you to the wedding of</p>
+    <h1 class="mt-5 leading-none">
+      <span class="hero-in d2 block gold-text font-serif font-semibold text-6xl sm:text-8xl">Jaswant</span>
+      <span class="hero-in d3 block font-display text-turmeric text-2xl sm:text-3xl my-3 glow-shadow">&amp;</span>
+      <span class="hero-in d3 block gold-text font-serif font-semibold text-6xl sm:text-8xl">Divya Darshini</span>
+    </h1>
+    <p class="hero-in d4 font-display text-sandal text-xl sm:text-2xl mt-8 glow-shadow">Sunday, 14 February 2027</p>
+    <p class="hero-in d4 font-serif text-sandal/85 text-lg mt-1 glow-shadow">Taj Hotel, Coimbatore</p>
+    <a href="#details" class="hero-in d4 mt-10 text-turmeric/90 text-sm font-display flex flex-col items-center gap-2 hover:text-turmeric glow-shadow">
+      Walk into the sanctum
+      <svg class="w-5 h-5 animate-bounce" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+    </a>
+  </section>
+
+  <!-- INVITATION -->
+  <section id="details" class="px-6 py-24">
+    <div class="reveal card max-w-xl mx-auto rounded-t-[160px] rounded-b-2xl px-8 sm:px-14 pt-20 pb-14 text-center">
+      <svg viewBox="0 0 100 40" class="w-24 mx-auto mb-6" aria-hidden="true">
+        <path d="M0 20 H35 M65 20 H100" stroke="#B8862B" stroke-width="1"/>
+        <path d="M50 4 C40 14 40 26 50 36 C60 26 60 14 50 4Z" fill="#E3A72F"/>
+        <circle cx="50" cy="20" r="3" fill="#6B0F1A"/>
+      </svg>
+      <p class="font-serif text-xl sm:text-2xl leading-relaxed text-sandal/95">
+        Two families come together before the sacred fire as
+        <span class="text-turmeric">Jaswant</span> and <span class="text-turmeric">Divya Darshini</span>
+        begin their life as one. Your presence and blessings would make the day complete.
+      </p>
+      <p class="font-tamil text-turmeric/85 mt-8">சுபமுகூர்த்தம்</p>
+    </div>
+  </section>
+
+  <!-- DATE + COUNTDOWN -->
+  <section class="px-6 py-24 text-center">
+    <div class="reveal card max-w-2xl mx-auto rounded-2xl px-6 sm:px-10 py-12">
+      <h2 class="font-display text-3xl sm:text-4xl gold-text">The auspicious day</h2>
+      <div class="mt-8 flex items-end justify-center gap-4 sm:gap-8 font-display">
+        <span class="text-sandal/85 text-lg sm:text-xl pb-3">February</span>
+        <span class="text-turmeric text-7xl sm:text-8xl leading-none">14</span>
+        <span class="text-sandal/85 text-lg sm:text-xl pb-3">2027</span>
+      </div>
+      <p id="muhurtham" class="font-serif italic text-sandal/80 text-lg mt-3"></p>
+      <div id="countdown" class="mt-10 grid grid-cols-4 gap-3 sm:gap-5 max-w-md mx-auto"></div>
+    </div>
+  </section>
+
+  <!-- VENUE -->
+  <section class="px-6 py-24 text-center">
+    <div class="reveal card max-w-xl mx-auto rounded-2xl px-8 py-12">
+      <svg viewBox="0 0 24 24" class="w-9 h-9 mx-auto text-turmeric" fill="currentColor" aria-hidden="true"><path d="M12 2C8 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3-7-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg>
+      <h2 class="font-display text-3xl gold-text mt-4">Venue</h2>
+      <p class="font-serif text-2xl text-sandal mt-4">Taj Hotel</p>
+      <p class="font-serif text-lg text-sandal/80">Coimbatore, Tamil Nadu</p>
+      <div class="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
+        <a id="mapLink" target="_blank" rel="noopener" class="font-display bg-turmeric text-night px-6 py-3 rounded-full hover:bg-[#f2bd4c] transition">Open in Google Maps</a>
+        <a id="calLink" target="_blank" rel="noopener" class="font-display border border-turmeric text-turmeric px-6 py-3 rounded-full hover:bg-turmeric/10 transition">Add to calendar</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="px-6 pt-16 pb-28 text-center">
+    <p class="reveal font-serif italic text-xl text-sandal/90 glow-shadow">With love and best compliments from</p>
+    <p class="reveal font-display text-turmeric text-lg mt-2 glow-shadow" id="hosts"></p>
+    <button id="petalBtn" class="mt-10 font-display text-sm text-turmeric/90 hover:text-turmeric underline underline-offset-4 glow-shadow">Shower blessings</button>
+  </footer>
+</main>
+
+<!-- =========================================================
+     UI LOGIC (works even if 3D fails)
+     ========================================================= -->
+<script>
+/* -------- EDIT YOUR DETAILS HERE -------- */
+window.CONFIG = {
+  groom: 'Jaswant',
+  bride: 'Divya Darshini',
+  dateISO: '2027-02-14T09:00:00+05:30',          // muhurtham start (IST) – update when confirmed
+  muhurthamText: 'Muhurtham timing to be announced',
+  venueName: 'Taj Hotel Coimbatore',
+  mapsQuery: 'Taj Hotel Coimbatore',
+  hosts: 'The families of the bride and groom'
+};
+
+(function () {
+  const C = window.CONFIG;
+  const $ = id => document.getElementById(id);
+
+  $('muhurtham').textContent = C.muhurthamText;
+  $('hosts').textContent = C.hosts;
+  $('mapLink').href = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(C.mapsQuery);
+  $('calLink').href = 'https://calendar.google.com/calendar/render?action=TEMPLATE' +
+    '&text=' + encodeURIComponent(`Wedding of ${C.groom} & ${C.bride}`) +
+    '&dates=20270214/20270215&location=' + encodeURIComponent(C.venueName);
+
+  /* Countdown */
+  const target = new Date(C.dateISO).getTime();
+  const units = [['Days', 864e5], ['Hours', 36e5], ['Minutes', 6e4], ['Seconds', 1e3]];
+  const cd = $('countdown');
+  cd.innerHTML = units.map(([l]) => `
+    <div class="rounded-2xl border border-turmeric/40 bg-kumkum/30 py-3">
+      <div class="font-display text-2xl sm:text-3xl text-turmeric" data-u="${l}">0</div>
+      <div class="font-serif text-sm text-sandal/75">${l}</div>
+    </div>`).join('');
+  function tick() {
+    let diff = Math.max(0, target - Date.now());
+    units.forEach(([l, ms]) => { const v = Math.floor(diff / ms); diff -= v * ms; cd.querySelector(`[data-u="${l}"]`).textContent = v; });
+  }
+  tick(); setInterval(tick, 1000);
+
+  /* Loader: hide when 3D is ready, or fall back after a timeout */
+  function hideLoader() { const l = $('loader'); if (!l) return; l.style.opacity = 0; setTimeout(() => l.remove(), 1000); }
+  window.__onSceneReady = hideLoader;
+  setTimeout(() => {
+    if (!window.__sceneReady) { document.body.classList.add('no3d'); hideLoader(); }
+  }, 9000);
+
+  /* Reveal content */
+  function revealContent() {
+    document.body.classList.remove('locked');
+    document.body.classList.add('entered');
+    const c = $('content'); c.style.opacity = 1; c.style.pointerEvents = 'auto';
+  }
+
+  let entered = false;
+  window.__enter = () => {
+    if (entered) return; entered = true;
+    const g = $('gateUI'); g.style.opacity = 0;
+    const has3d = typeof window.__openScene === 'function';
+    if (has3d) window.__openScene();
+    setTimeout(revealContent, has3d ? 4200 : 0);
+  };
+
+  /* Fallback (no 3D): tap anywhere or press Enter to open */
+  document.addEventListener('click', () => { if (document.body.classList.contains('no3d')) window.__enter(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { if (!entered) { e.preventDefault(); window.__enter(); } } });
+
+  $('petalBtn').addEventListener('click', () => window.__shower && window.__shower(1));
+
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }), { threshold: .2 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+})();
+</script>
+
+<!-- =========================================================
+     3D TEMPLE SCENE
+     ========================================================= -->
+<script type="module">
+import * as THREE from 'three';
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
+
+const canvas = document.getElementById('scene');
+const isMobile = matchMedia('(max-width: 768px), (pointer: coarse)').matches;
+const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const TEX = isMobile ? 256 : 512;
+
+let renderer;
+try {
+  renderer = new THREE.WebGLRenderer({ canvas, antialias: !isMobile, powerPreference: 'high-performance' });
+} catch (e) {
+  document.body.classList.add('no3d');
+  throw e;
+}
+renderer.setPixelRatio(Math.min(devicePixelRatio, isMobile ? 1.5 : 2));
+renderer.setSize(innerWidth, innerHeight);
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.35;
+renderer.shadowMap.enabled = !isMobile;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x080403);
+scene.fog = new THREE.FogExp2(0x0a0504, 0.04);
+
+const camera = new THREE.PerspectiveCamera(48, innerWidth / innerHeight, 0.05, 80);
+
+/* ------------------------------------------------------------
+   Warm reflection environment (makes brass & granite look real)
+------------------------------------------------------------ */
+{
+  const env = new THREE.Scene();
+  env.add(new THREE.Mesh(new THREE.BoxGeometry(20, 12, 20),
+    new THREE.MeshBasicMaterial({ color: 0x1a0c07, side: THREE.BackSide })));
+  const hot = new THREE.MeshBasicMaterial({ color: new THREE.Color(6, 3.2, 1.1) });
+  [[-4, 1, 3], [4, 1, 3], [0, 3, -8], [0, 5, 0]].forEach(([x, y, z]) => {
+    const s = new THREE.Mesh(new THREE.SphereGeometry(0.9, 16, 8), hot); s.position.set(x, y, z); env.add(s);
+  });
+  const pmrem = new THREE.PMREMGenerator(renderer);
+  scene.environment = pmrem.fromScene(env, 0.03).texture;
+}
+
+/* ------------------------------------------------------------
+   Procedural textures (tileable noise → stone, granite, teak)
+------------------------------------------------------------ */
+function hash(x, y, s) {
+  let h = Math.imul(x | 0, 374761393) ^ Math.imul(y | 0, 668265263) ^ Math.imul(s | 0, 1442695041);
+  h = Math.imul(h ^ (h >>> 13), 1274126177);
+  return ((h ^ (h >>> 16)) >>> 0) / 4294967295;
+}
+const mod = (a, n) => ((a % n) + n) % n;
+function vnoise(x, y, s, px, py) {
+  const xi = Math.floor(x), yi = Math.floor(y), xf = x - xi, yf = y - yi;
+  const u = xf * xf * (3 - 2 * xf), v = yf * yf * (3 - 2 * yf);
+  const x0 = mod(xi, px), x1 = mod(xi + 1, px), y0 = mod(yi, py), y1 = mod(yi + 1, py);
+  const a = hash(x0, y0, s), b = hash(x1, y0, s), c = hash(x0, y1, s), d = hash(x1, y1, s);
+  return a + (b - a) * u + (c - a) * v + (a - b - c + d) * u * v;
+}
+function fbm(u, v, s, fx, fy, oct = 5) {
+  let t = 0, amp = .5, f = 1, norm = 0;
+  for (let i = 0; i < oct; i++) { t += amp * vnoise(u * fx * f, v * fy * f, s + i * 31, fx * f, fy * f); norm += amp; f *= 2; amp *= .5; }
+  return t / norm;
+}
+function makeTextures(size, fn, repeat = [1, 1]) {
+  const cA = document.createElement('canvas'), cB = document.createElement('canvas');
+  cA.width = cA.height = cB.width = cB.height = size;
+  const A = cA.getContext('2d'), B = cB.getContext('2d');
+  const ia = A.createImageData(size, size), ib = B.createImageData(size, size);
+  for (let y = 0; y < size; y++) for (let x = 0; x < size; x++) {
+    const [r, g, b, h] = fn(x / size, y / size, x, y);
+    const i = (y * size + x) * 4;
+    ia.data[i] = r; ia.data[i + 1] = g; ia.data[i + 2] = b; ia.data[i + 3] = 255;
+    const hv = Math.max(0, Math.min(255, h * 255));
+    ib.data[i] = ib.data[i + 1] = ib.data[i + 2] = hv; ib.data[i + 3] = 255;
+  }
+  A.putImageData(ia, 0, 0); B.putImageData(ib, 0, 0);
+  const aniso = renderer.capabilities.getMaxAnisotropy();
+  const map = new THREE.CanvasTexture(cA), bump = new THREE.CanvasTexture(cB);
+  [map, bump].forEach(t => { t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(...repeat); t.anisotropy = aniso; });
+  map.colorSpace = THREE.SRGBColorSpace;
+  return { map, bump };
+}
+
+// Polished black granite floor with speckles and tile joints
+const floorTex = makeTextures(TEX, (u, v, x, y) => {
+  const n = fbm(u, v, 3, 6, 6);
+  const sp = hash(x, y, 77);
+  let c = 18 + n * 26;
+  let r = c * 1.05, g = c * .95, b = c * .9;
+  if (sp > .988) { r = 150; g = 138; b = 120; }
+  else if (sp > .975) { r += 28; g += 24; b += 20; }
+  const ju = Math.min(mod(u * 2, 1), 1 - mod(u * 2, 1)), jv = Math.min(mod(v * 2, 1), 1 - mod(v * 2, 1));
+  const joint = Math.min(ju, jv) < .006;
+  if (joint) { r *= .35; g *= .35; b *= .35; }
+  return [r, g, b, joint ? .1 : .55 + n * .25];
+}, [10, 10]);
+
+// Warm sandstone blocks for walls
+const wallTex = makeTextures(TEX, (u, v) => {
+  const rows = 6, row = Math.floor(v * rows);
+  const cols = 3, off = (row % 2) * .5 / cols;
+  const bu = mod(u + off, 1 / cols) * cols, bv = mod(v * rows, 1);
+  const mortar = bu < .02 || bu > .98 || bv < .03 || bv > .97;
+  const n = fbm(u, v, 11, 8, 8), m = fbm(u, v, 19, 32, 32, 3);
+  const k = .55 + n * .5 + (m - .5) * .15;
+  let r = 132 * k, g = 96 * k, b = 66 * k;
+  if (mortar) { r *= .45; g *= .42; b *= .4; }
+  return [r, g, b, mortar ? .15 : .5 + n * .4 + m * .1];
+}, [4, 2]);
+
+// Grey-brown carved granite (pillars, door frame)
+const graniteTex = makeTextures(TEX, (u, v, x, y) => {
+  const n = fbm(u, v, 5, 6, 6), sp = hash(x, y, 9);
+  let c = 70 + n * 60;
+  let r = c * 1.02, g = c * .93, b = c * .84;
+  if (sp > .97) { r *= .5; g *= .5; b *= .5; }
+  else if (sp > .94) { r += 25; g += 22; b += 18; }
+  return [r, g, b, n];
+}, [1, 2]);
+
+// Aged teak door wood with long grain
+const woodTex = makeTextures(TEX, (u, v) => {
+  const warp = fbm(u, v, 41, 3, 1.5) * 7;
+  const grain = Math.sin((u * 46 + warp) * Math.PI) * .5 + .5;
+  const fine = fbm(u, v, 53, 64, 4, 3);
+  const k = .55 + grain * .3 + fine * .25;
+  return [150 * k, 76 * k, 36 * k, grain * .6 + fine * .4];
+});
+
+/* ------------------------------------------------------------
+   Materials
+------------------------------------------------------------ */
+const M = {
+  floor: new THREE.MeshStandardMaterial({ map: floorTex.map, bumpMap: floorTex.bump, bumpScale: .6, roughness: .22, metalness: 0, envMapIntensity: .55 }),
+  wall: new THREE.MeshStandardMaterial({ map: wallTex.map, bumpMap: wallTex.bump, bumpScale: 2, roughness: .92, envMapIntensity: .12 }),
+  granite: new THREE.MeshStandardMaterial({ map: graniteTex.map, bumpMap: graniteTex.bump, bumpScale: 1.5, roughness: .7, envMapIntensity: .2 }),
+  wood: new THREE.MeshStandardMaterial({ map: woodTex.map, bumpMap: woodTex.bump, bumpScale: 1.5, roughness: .62, envMapIntensity: .25 }),
+  brass: new THREE.MeshStandardMaterial({ color: 0xd2a04a, metalness: 1, roughness: .26, envMapIntensity: 1.1 }),
+  oldBrass: new THREE.MeshStandardMaterial({ color: 0xa87a32, metalness: 1, roughness: .42, envMapIntensity: .9 }),
+  kumkum: new THREE.MeshStandardMaterial({ color: 0x7a0f14, roughness: .8 }),
+};
+
+const shadowy = o => { o.traverse(m => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } }); return o; };
+
+/* ------------------------------------------------------------
+   Architecture
+------------------------------------------------------------ */
+// Floor
+{
+  const f = new THREE.Mesh(new THREE.PlaneGeometry(40, 40), M.floor);
+  f.rotation.x = -Math.PI / 2; f.position.z = -4; f.receiveShadow = true; scene.add(f);
+}
+// Front threshold step
+{
+  const s = new THREE.Mesh(new THREE.BoxGeometry(5.6, .18, 1.3), M.granite);
+  s.position.set(0, .09, .55); shadowy(s); scene.add(s);
+}
+
+// Facade walls with doorway opening (opening 4.7 wide, 7.8 high)
+{
+  const wl = new THREE.Mesh(new THREE.BoxGeometry(12, 11, 1.4), M.wall);
+  wl.position.set(-(2.7 + 6), 5.5, -.2); shadowy(wl); scene.add(wl);
+  const wr = wl.clone(); wr.position.x = 2.7 + 6; scene.add(wr);
+  const top = new THREE.Mesh(new THREE.BoxGeometry(5.4, 3.2, 1.4), M.wall);
+  top.position.set(0, 9.4, -.2); shadowy(top); scene.add(top);
+  // Plinth moulding running along the facade
+  [-1, 1].forEach(sx => {
+    const p = new THREE.Mesh(new THREE.BoxGeometry(12, .45, .25), M.granite);
+    p.position.set(sx * 8.7, .22, .62); shadowy(p); scene.add(p);
+    const p2 = new THREE.Mesh(new THREE.BoxGeometry(12, .18, .18), M.granite);
+    p2.position.set(sx * 8.7, .58, .58); shadowy(p2); scene.add(p2);
+  });
+}
+
+// Carved granite door frame
+{
+  const frame = new THREE.Group();
+  [-1, 1].forEach(sx => {
+    const post = new THREE.Mesh(new THREE.BoxGeometry(.7, 7.4, 1.0), M.granite);
+    post.position.set(sx * 2.35, 3.7, 0); frame.add(post);
+    // carved horizontal bands
+    for (let i = 0; i < 9; i++) {
+      const band = new THREE.Mesh(new THREE.BoxGeometry(.78, .07, 1.06), M.granite);
+      band.position.set(sx * 2.35, .5 + i * .8, 0); frame.add(band);
+    }
+    // inner carved bead moulding
+    const bead = new THREE.Mesh(new THREE.CylinderGeometry(.06, .06, 7.0, 10), M.granite);
+    bead.position.set(sx * 2.04, 3.5, .38); frame.add(bead);
+  });
+  const lintel = new THREE.Mesh(new THREE.BoxGeometry(5.6, .8, 1.1), M.granite);
+  lintel.position.set(0, 7.8, 0); frame.add(lintel);
+  const cornice = new THREE.Mesh(new THREE.BoxGeometry(6.0, .22, 1.3), M.granite);
+  cornice.position.set(0, 8.3, 0); frame.add(cornice);
+  // Gajalakshmi-style central medallion on lintel
+  const med = new THREE.Mesh(new THREE.CylinderGeometry(.34, .34, .12, 32), M.oldBrass);
+  med.rotation.x = Math.PI / 2; med.position.set(0, 7.8, .58); frame.add(med);
+  const medRing = new THREE.Mesh(new THREE.TorusGeometry(.38, .04, 10, 40), M.brass);
+  medRing.position.set(0, 7.8, .6); frame.add(medRing);
+  // small kalasam finials on cornice
+  const kal = new THREE.LatheGeometry([
+    [0, 0], [.14, 0], [.16, .05], [.12, .1], [.17, .2], [.14, .3], [.06, .34], [.08, .38], [.03, .5], [0, .55]
+  ].map(p => new THREE.Vector2(p[0], p[1])), 24);
+  [-2.2, -1.1, 0, 1.1, 2.2].forEach(x => {
+    const k = new THREE.Mesh(kal, M.brass); k.position.set(x, 8.41, .2); frame.add(k);
+  });
+  shadowy(frame); scene.add(frame);
+}
+
+// Temple doors with brass studs
+const doors = [];
+function makeDoorLeaf(side) {
+  const pivot = new THREE.Group();
+  pivot.position.set(side * -2, 0, 0);
+  const leaf = new THREE.Group();
+  leaf.position.set(side * .99, 3.3, 0);
+  pivot.add(leaf);
+
+  const W = 1.98, H = 6.6, T = .22;
+  leaf.add(new THREE.Mesh(new THREE.BoxGeometry(W, H, T), M.wood));
+  // raised rails and stiles (both faces)
+  const rails = [-3.1, -1.6, 0, 1.6, 3.1];
+  [1, -1].forEach(face => {
+    rails.forEach(y => {
+      const r = new THREE.Mesh(new THREE.BoxGeometry(W - .1, .16, .06), M.wood);
+      r.position.set(0, y, face * (T / 2 + .03)); leaf.add(r);
+    });
+    [-W / 2 + .1, 0, W / 2 - .1].forEach(x => {
+      const s = new THREE.Mesh(new THREE.BoxGeometry(.16, H - .1, .06), M.wood);
+      s.position.set(x, 0, face * (T / 2 + .03)); leaf.add(s);
+    });
+  });
+  // brass edge bands
+  [-H / 2 + .12, H / 2 - .12].forEach(y => {
+    const b = new THREE.Mesh(new THREE.BoxGeometry(W, .1, T + .16), M.oldBrass);
+    b.position.set(0, y, 0); leaf.add(b);
+  });
+  // studs (brass bosses) on the front face
+  const studGeo = new THREE.LatheGeometry([[0, 0], [.075, 0], [.08, .015], [.06, .05], [.03, .08], [.012, .11], [0, .12]]
+    .map(p => new THREE.Vector2(p[0], p[1])), 18);
+  studGeo.rotateX(Math.PI / 2);
+  const cols = [-.62, -.31, 0, .31, .62];
+  const rowsY = [];
+  for (let i = 0; i < 9; i++) rowsY.push(-2.85 + i * .72);
+  const studs = new THREE.InstancedMesh(studGeo, M.brass, cols.length * rowsY.length);
+  const d = new THREE.Object3D(); let k = 0;
+  rowsY.forEach(y => cols.forEach(x => { d.position.set(x, y, T / 2 + .06); d.updateMatrix(); studs.setMatrixAt(k++, d.matrix); }));
+  leaf.add(studs);
+  // ring handle + backplate near the meeting edge
+  const plate = new THREE.Mesh(new THREE.CylinderGeometry(.13, .13, .03, 24), M.oldBrass);
+  plate.rotation.x = Math.PI / 2; plate.position.set(side * .72, .15, T / 2 + .1); leaf.add(plate);
+  const ring = new THREE.Mesh(new THREE.TorusGeometry(.17, .025, 12, 40), M.brass);
+  ring.position.set(side * .72, -.04, T / 2 + .13); ring.rotation.x = .25; leaf.add(ring);
+  // vermilion & sandal tilak dots on the door (traditional)
+  const dot = new THREE.Mesh(new THREE.CircleGeometry(.05, 20), M.kumkum);
+  dot.position.set(side * .72, .5, T / 2 + .062); leaf.add(dot);
+
+  shadowy(pivot);
+  scene.add(pivot);
+  doors.push({ pivot, side });
+}
+makeDoorLeaf(1);   // left leaf (hinge at x = -2)
+makeDoorLeaf(-1);  // right leaf (hinge at x = +2)
+function setDoors(angle) {
+  doors.forEach(({ pivot, side }) => { pivot.rotation.y = side * angle; });
+}
+
+// Interior hall
+{
+  const sideGeo = new THREE.BoxGeometry(1, 8, 14);
+  [-1, 1].forEach(sx => {
+    const w = new THREE.Mesh(sideGeo, M.wall); w.position.set(sx * 6, 4, -7.6); shadowy(w); scene.add(w);
+  });
+  const back = new THREE.Mesh(new THREE.BoxGeometry(12, 8, 1), M.wall);
+  back.position.set(0, 4, -14); shadowy(back); scene.add(back);
+  const ceil = new THREE.Mesh(new THREE.BoxGeometry(12, .6, 14), M.granite);
+  ceil.position.set(0, 8.1, -7.6); ceil.receiveShadow = true; scene.add(ceil);
+  // ceiling beams
+  for (let z = -2; z > -14; z -= 2.4) {
+    const b = new THREE.Mesh(new THREE.BoxGeometry(12, .4, .5), M.granite);
+    b.position.set(0, 7.6, z); shadowy(b); scene.add(b);
+  }
+  // raised sanctum platform
+  const plat = new THREE.Mesh(new THREE.BoxGeometry(6, .35, 3), M.granite);
+  plat.position.set(0, .175, -12.2); shadowy(plat); scene.add(plat);
+  const plat2 = new THREE.Mesh(new THREE.BoxGeometry(6.4, .15, 3.4), M.granite);
+  plat2.position.set(0, .075, -12.2); shadowy(plat2); scene.add(plat2);
+}
+
+// Carved pillars
+function pillar(h = 7.2) {
+  const g = new THREE.Group();
+  const base = new THREE.Mesh(new THREE.BoxGeometry(1.05, .5, 1.05), M.granite); base.position.y = .25; g.add(base);
+  const base2 = new THREE.Mesh(new THREE.BoxGeometry(.85, .3, .85), M.granite); base2.position.y = .65; g.add(base2);
+  const shaftH = h - 2.0;
+  const shaft = new THREE.Mesh(new THREE.CylinderGeometry(.3, .33, shaftH, 8), M.granite);
+  shaft.position.y = .8 + shaftH / 2; g.add(shaft);
+  // carved square blocks along the shaft (typical Dravidian pillar)
+  [.8 + shaftH * .3, .8 + shaftH * .68].forEach(y => {
+    const blk = new THREE.Mesh(new THREE.BoxGeometry(.72, .55, .72), M.granite); blk.position.y = y; g.add(blk);
+    const ring = new THREE.Mesh(new THREE.TorusGeometry(.33, .04, 8, 8), M.granite);
+    ring.rotation.x = Math.PI / 2; ring.position.y = y + .34; g.add(ring);
+    const ring2 = ring.clone(); ring2.position.y = y - .34; g.add(ring2);
+  });
+  const cap = new THREE.Mesh(new THREE.LatheGeometry([
+    [0, 0], [.32, 0], [.46, .18], [.5, .32], [.42, .44], [.3, .5], [0, .5]
+  ].map(p => new THREE.Vector2(p[0], p[1])), 8), M.granite);
+  cap.position.y = .8 + shaftH; g.add(cap);
+  const abacus = new THREE.Mesh(new THREE.BoxGeometry(1.1, .3, 1.1), M.granite);
+  abacus.position.y = .8 + shaftH + .65; g.add(abacus);
+  // potika bracket
+  const br = new THREE.Mesh(new THREE.BoxGeometry(1.6, .28, .5), M.granite);
+  br.position.y = .8 + shaftH + .94; g.add(br);
+  return shadowy(g);
+}
+[[-4.3, 2.6], [4.3, 2.6], [-4.3, 6.2], [4.3, 6.2]].forEach(([x, z]) => {
+  const p = pillar(7.4); p.position.set(x, 0, z); scene.add(p);
+});
+// front mandapam roof over the outer pillars
+{
+  const roof = new THREE.Mesh(new THREE.BoxGeometry(10.4, .5, 5.2), M.granite);
+  roof.position.set(0, 7.65, 4.4); shadowy(roof); scene.add(roof);
+  const lip = new THREE.Mesh(new THREE.BoxGeometry(10.8, .18, 5.6), M.granite);
+  lip.position.set(0, 7.35, 4.4); shadowy(lip); scene.add(lip);
+}
+[-3.2, 3.2].forEach(x => [-3.5, -7, -10.3].forEach(z => {
+  const p = pillar(7.4); p.position.set(x, 0, z); scene.add(p);
+}));
+
+/* ------------------------------------------------------------
+   Lamps (kuthuvilakku) with real flickering light
+------------------------------------------------------------ */
+function flameTexture() {
+  const c = document.createElement('canvas'); c.width = 64; c.height = 128;
+  const g = c.getContext('2d');
+  const grd = g.createRadialGradient(32, 92, 2, 32, 80, 60);
+  grd.addColorStop(0, 'rgba(255,255,235,1)');
+  grd.addColorStop(.18, 'rgba(255,226,140,1)');
+  grd.addColorStop(.45, 'rgba(255,140,40,.85)');
+  grd.addColorStop(1, 'rgba(255,60,0,0)');
+  g.fillStyle = grd;
+  g.beginPath();
+  g.moveTo(32, 4);
+  g.bezierCurveTo(52, 50, 58, 92, 32, 122);
+  g.bezierCurveTo(6, 92, 12, 50, 32, 4);
+  g.fill();
+  const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t;
+}
+function glowTexture() {
+  const c = document.createElement('canvas'); c.width = c.height = 128;
+  const g = c.getContext('2d');
+  const grd = g.createRadialGradient(64, 64, 0, 64, 64, 64);
+  grd.addColorStop(0, 'rgba(255,190,90,.9)'); grd.addColorStop(.3, 'rgba(255,140,40,.35)'); grd.addColorStop(1, 'rgba(255,100,20,0)');
+  g.fillStyle = grd; g.fillRect(0, 0, 128, 128);
+  const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t;
+}
+const FLAME_TEX = flameTexture(), GLOW_TEX = glowTexture();
+const flameMat = new THREE.SpriteMaterial({ map: FLAME_TEX, color: new THREE.Color(2.4, 1.7, 1.0), blending: THREE.AdditiveBlending, depthWrite: false, transparent: true });
+const glowMat = new THREE.SpriteMaterial({ map: GLOW_TEX, color: new THREE.Color(1, .8, .55), blending: THREE.AdditiveBlending, depthWrite: false, transparent: true, opacity: .35 });
+
+const flames = [];   // {sprite, base, phase}
+const lights = [];   // {light, base, phase}
+
+const lampProfile = [
+  [0, 0], [.34, 0], [.36, .03], [.33, .07], [.2, .11], [.12, .17], [.07, .24], [.05, .45], [.1, .5], [.1, .54], [.05, .6],
+  [.045, .95], [.085, 1.0], [.085, 1.04], [.045, 1.09], [.04, 1.32], [.07, 1.38], [.2, 1.42], [.27, 1.47], [.285, 1.5],
+  [.27, 1.52], [.08, 1.5], [.05, 1.53], [.05, 1.6], [.1, 1.67], [.05, 1.74], [.032, 1.86], [.07, 1.92], [.045, 1.98], [0, 2.05]
+].map(p => new THREE.Vector2(p[0], p[1]));
+const lampGeo = new THREE.LatheGeometry(lampProfile, 40);
+
+function lamp(x, z, scale = 1, { intensity = 9, shadow = false, color = 0xff9a45 } = {}) {
+  const g = new THREE.Group();
+  g.position.set(x, 0, z); g.scale.setScalar(scale);
+  const body = new THREE.Mesh(lampGeo, M.brass); body.castShadow = true; body.receiveShadow = true; g.add(body);
+  for (let i = 0; i < 5; i++) {
+    const a = i / 5 * Math.PI * 2 + .3;
+    const fx = Math.cos(a) * .25, fz = Math.sin(a) * .25;
+    const f = new THREE.Sprite(flameMat); f.position.set(fx, 1.61, fz); f.scale.set(.075, .17, 1); g.add(f);
+    flames.push({ sprite: f, base: f.scale.clone(), phase: Math.random() * 10 });
+    const gl = new THREE.Sprite(glowMat); gl.position.set(fx, 1.6, fz); gl.scale.setScalar(.42); g.add(gl);
+  }
+  const L = new THREE.PointLight(color, intensity, 14, 2);
+  L.position.set(0, 1.75, 0);
+  if (shadow && renderer.shadowMap.enabled) {
+    L.castShadow = true; L.shadow.mapSize.set(512, 512); L.shadow.bias = -.002; L.shadow.radius = 4;
+  }
+  g.add(L);
+  lights.push({ light: L, base: intensity, phase: Math.random() * 10 });
+  scene.add(g);
+  return g;
+}
+lamp(-3.25, 1.35, 1, { intensity: 25, shadow: true });
+lamp(3.25, 1.35, 1, { intensity: 25, shadow: true });
+lamp(0, -9.4, 1.35, { intensity: 30 });
+lamp(-1.8, -5.2, .7, { intensity: 8 });
+lamp(1.8, -5.2, .7, { intensity: 8 });
+
+// Row of clay diyas along the aisle (flames only, light comes from the lamps)
+{
+  const diyaGeo = new THREE.LatheGeometry([[0, 0], [.07, 0], [.1, .03], [.11, .06], [.09, .055], [.0, .03]].map(p => new THREE.Vector2(p[0], p[1])), 20);
+  const clay = new THREE.MeshStandardMaterial({ color: 0x7a3b1c, roughness: .85 });
+  for (let z = -1.6; z > -11; z -= 1.1) {
+    [-1.1, 1.1].forEach(x => {
+      const d = new THREE.Mesh(diyaGeo, clay); d.position.set(x, 0, z); d.receiveShadow = true; scene.add(d);
+      const f = new THREE.Sprite(flameMat); f.position.set(x + .07, .11, z); f.scale.set(.045, .1, 1); scene.add(f);
+      flames.push({ sprite: f, base: f.scale.clone(), phase: Math.random() * 10 });
+      const gl = new THREE.Sprite(glowMat); gl.position.set(x + .07, .1, z); gl.scale.setScalar(.3); scene.add(gl);
+    });
+  }
+}
+
+/* ------------------------------------------------------------
+   Sanctum: brass prabhavali arch with a glowing ॐ
+------------------------------------------------------------ */
+{
+  const g = new THREE.Group(); g.position.set(0, .35, -12.9);
+  const arch = new THREE.Mesh(new THREE.TorusGeometry(1.9, .1, 16, 80, Math.PI), M.brass);
+  arch.position.y = 2.6; g.add(arch);
+  [-1.9, 1.9].forEach(x => {
+    const leg = new THREE.Mesh(new THREE.CylinderGeometry(.1, .12, 2.6, 16), M.brass); leg.position.set(x, 1.3, 0); g.add(leg);
+  });
+  const spikeGeo = new THREE.ConeGeometry(.08, .34, 10);
+  for (let i = 0; i <= 18; i++) {
+    const a = i / 18 * Math.PI;
+    const s = new THREE.Mesh(spikeGeo, M.brass);
+    s.position.set(Math.cos(a) * 2.12, 2.6 + Math.sin(a) * 2.12, 0);
+    s.rotation.z = a - Math.PI / 2; g.add(s);
+  }
+  const crest = new THREE.Mesh(new THREE.SphereGeometry(.16, 20, 12), M.brass); crest.position.set(0, 4.95, 0); g.add(crest);
+  shadowy(g);
+
+  // glowing ॐ
+  const c = document.createElement('canvas'); c.width = c.height = 512;
+  const x = c.getContext('2d');
+  x.font = '380px "Noto Serif", "Noto Sans Devanagari", serif';
+  x.textAlign = 'center'; x.textBaseline = 'middle';
+  x.shadowColor = 'rgba(255,190,80,.9)'; x.shadowBlur = 30;
+  x.fillStyle = '#ffd98a'; x.fillText('ॐ', 256, 280);
+  const tex = new THREE.CanvasTexture(c); tex.colorSpace = THREE.SRGBColorSpace;
+  const om = new THREE.Mesh(new THREE.PlaneGeometry(1.9, 1.9),
+    new THREE.MeshBasicMaterial({ map: tex, transparent: true, depthWrite: false, color: new THREE.Color(2.2, 1.7, 1.1), toneMapped: false }));
+  om.position.set(0, 2.55, .05); g.add(om);
+
+  const halo = new THREE.Sprite(new THREE.SpriteMaterial({ map: GLOW_TEX, color: new THREE.Color(1.2, .8, .45), blending: THREE.AdditiveBlending, depthWrite: false, transparent: true, opacity: .6 }));
+  halo.scale.setScalar(5.5); halo.position.set(0, 2.6, -.2); g.add(halo);
+
+  const L = new THREE.PointLight(0xffb060, 22, 12, 2); L.position.set(0, 2.8, 1.2); g.add(L);
+  lights.push({ light: L, base: 22, phase: 3 });
+  scene.add(g);
+}
+
+/* ------------------------------------------------------------
+   Garlands: marigold & jasmine strings, mango-leaf thoranam
+------------------------------------------------------------ */
+{
+  // ruffled marigold bead
+  const flowerGeo = new THREE.IcosahedronGeometry(.07, 2);
+  const pos = flowerGeo.attributes.position, v = new THREE.Vector3();
+  for (let i = 0; i < pos.count; i++) {
+    v.fromBufferAttribute(pos, i);
+    const k = .78 + .34 * hash(Math.round(v.x * 900), Math.round(v.y * 900) + Math.round(v.z * 377), 5);
+    v.multiplyScalar(k); pos.setXYZ(i, v.x, v.y, v.z);
+  }
+  flowerGeo.computeVertexNormals();
+  const flowerMat = new THREE.MeshStandardMaterial({ roughness: .75, flatShading: true });
+
+  const strings = [];
+  // vertical strands on the door frame
+  [-1, 1].forEach(sx => [-.16, .16].forEach(o => {
+    const pts = []; for (let y = 7.3; y > .9; y -= .115) pts.push(new THREE.Vector3(sx * 2.35 + o, y, .62));
+    strings.push(pts);
+  }));
+  // sagging swags across the doorway (two rows)
+  [[7.25, .75], [7.05, 1.15]].forEach(([y0, sag]) => {
+    const pts = []; const n = 52;
+    for (let i = 0; i <= n; i++) { const t = i / n; pts.push(new THREE.Vector3(-2.6 + t * 5.2, y0 - Math.sin(t * Math.PI) * sag, .66)); }
+    strings.push(pts);
+  });
+  // swags between the outer pillars
+  [-1, 1].forEach(sx => {
+    const pts = []; const n = 34;
+    for (let i = 0; i <= n; i++) { const t = i / n; pts.push(new THREE.Vector3(sx * 4.3, 6.9 - Math.sin(t * Math.PI) * .9, 6.2 - t * 3.6)); }
+    strings.push(pts);
+  });
+
+  const total = strings.reduce((a, s) => a + s.length, 0);
+  const flowers = new THREE.InstancedMesh(flowerGeo, flowerMat, total);
+  const d = new THREE.Object3D(), col = new THREE.Color();
+  const palette = [0xff8a12, 0xffa21f, 0xffc01c, 0xff7a0a];
+  let k = 0;
+  strings.forEach(pts => pts.forEach((p, i) => {
+    d.position.copy(p); d.rotation.set(Math.random() * 6, Math.random() * 6, 0);
+    d.scale.setScalar(.9 + Math.random() * .25); d.updateMatrix(); flowers.setMatrixAt(k, d.matrix);
+    const jasmine = (Math.floor(i / 6) % 4) === 3;
+    col.set(jasmine ? 0xfff4dc : palette[(Math.random() * palette.length) | 0]);
+    if (jasmine) d.scale.setScalar(.65);
+    flowers.setColorAt(k++, col);
+  }));
+  flowers.castShadow = true;
+  scene.add(flowers);
+
+  // tassels at the bottom of the vertical strands
+  const tasselGeo = new THREE.ConeGeometry(.07, .28, 10);
+  [-1, 1].forEach(sx => [-.16, .16].forEach(o => {
+    const t = new THREE.Mesh(tasselGeo, M.kumkum); t.rotation.x = Math.PI; t.position.set(sx * 2.35 + o, .7, .62); scene.add(t);
+  }));
+
+  // mango-leaf thoranam under the lintel
+  const shape = new THREE.Shape();
+  shape.moveTo(0, 0); shape.quadraticCurveTo(.1, -.14, 0, -.46); shape.quadraticCurveTo(-.1, -.14, 0, 0);
+  const leafGeo = new THREE.ShapeGeometry(shape, 10);
+  const lp = leafGeo.attributes.position;
+  for (let i = 0; i < lp.count; i++) lp.setZ(i, Math.abs(lp.getX(i)) * -.6);
+  leafGeo.computeVertexNormals();
+  const leafMat = new THREE.MeshStandardMaterial({ color: 0x2c5a22, roughness: .5, side: THREE.DoubleSide, envMapIntensity: .4 });
+  const N = 30;
+  const leaves = new THREE.InstancedMesh(leafGeo, leafMat, N);
+  for (let i = 0; i < N; i++) {
+    d.position.set(-2.6 + i * (5.2 / (N - 1)), 7.38, .7);
+    d.rotation.set(.15 + Math.random() * .15, (Math.random() - .5) * .5, (Math.random() - .5) * .25);
+    d.scale.setScalar(.9 + Math.random() * .25); d.updateMatrix(); leaves.setMatrixAt(i, d.matrix);
+    leaves.setColorAt(i, col.setHSL(.27 + Math.random() * .05, .5, .2 + Math.random() * .08));
+  }
+  leaves.castShadow = true; scene.add(leaves);
+  const cord = new THREE.Mesh(new THREE.CylinderGeometry(.015, .015, 5.3, 6), M.oldBrass);
+  cord.rotation.z = Math.PI / 2; cord.position.set(0, 7.4, .7); scene.add(cord);
+}
+
+/* ------------------------------------------------------------
+   Hanging temple bells just inside the doorway
+------------------------------------------------------------ */
+const bells = [];
+{
+  const bellGeo = new THREE.LatheGeometry([[0, 0], [.03, 0], [.045, -.02], [.06, -.08], [.075, -.18], [.1, -.27], [.13, -.31], [.125, -.325], [0, -.3]]
+    .map(p => new THREE.Vector2(p[0], p[1])), 32);
+  [-1.3, 1.3].forEach((x, i) => {
+    const pivot = new THREE.Group(); pivot.position.set(x, 7.4, -1.1);
+    const chain = new THREE.Mesh(new THREE.CylinderGeometry(.012, .012, 1.4, 6), M.oldBrass); chain.position.y = -.7; pivot.add(chain);
+    const bell = new THREE.Mesh(bellGeo, M.brass); bell.position.y = -1.4; pivot.add(bell);
+    const clapper = new THREE.Mesh(new THREE.SphereGeometry(.03, 10, 8), M.oldBrass); clapper.position.y = -1.7; pivot.add(clapper);
+    shadowy(pivot); scene.add(pivot);
+    bells.push({ pivot, amp: .03, phase: i * 1.7 });
+  });
+}
+
+/* ------------------------------------------------------------
+   Atmosphere: moonlight, ambient, dust motes
+------------------------------------------------------------ */
+scene.add(new THREE.HemisphereLight(0x3a2418, 0x080403, .45));
+{
+  // warm hanging-lamp light from the mandapam ceiling onto the doors
+  const spot = new THREE.SpotLight(0xffb06a, 90, 20, .62, .85, 2);
+  spot.position.set(0, 7.1, 5.2); spot.target.position.set(0, 2.6, -1);
+  if (renderer.shadowMap.enabled) { spot.castShadow = true; spot.shadow.mapSize.set(1024, 1024); spot.shadow.bias = -.001; }
+  scene.add(spot, spot.target);
+}
+{
+  const moon = new THREE.DirectionalLight(0x7d8fb8, .35);
+  moon.position.set(-8, 14, 12);
+  if (renderer.shadowMap.enabled) {
+    moon.castShadow = true; moon.shadow.mapSize.set(1024, 1024);
+    Object.assign(moon.shadow.camera, { left: -10, right: 10, top: 10, bottom: -6, near: 1, far: 40 });
+    moon.shadow.bias = -.0008;
+  }
+  scene.add(moon);
+}
+let dust;
+{
+  const n = isMobile ? 350 : 700, arr = new Float32Array(n * 3);
+  for (let i = 0; i < n; i++) { arr[i * 3] = (Math.random() - .5) * 10; arr[i * 3 + 1] = Math.random() * 7; arr[i * 3 + 2] = -13 + Math.random() * 20; }
+  const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.BufferAttribute(arr, 3));
+  dust = new THREE.Points(g, new THREE.PointsMaterial({ map: GLOW_TEX, size: .05, color: 0xffc98a, transparent: true, opacity: .55, depthWrite: false, blending: THREE.AdditiveBlending }));
+  scene.add(dust);
+}
+
+/* ------------------------------------------------------------
+   Falling flower petals (instanced, physically swaying)
+------------------------------------------------------------ */
+const PETALS = isMobile ? 180 : 360;
+const petalGeo = new THREE.PlaneGeometry(.06, .085, 4, 4);
+{
+  const p = petalGeo.attributes.position;
+  for (let i = 0; i < p.count; i++) { const x = p.getX(i), y = p.getY(i); p.setZ(i, x * x * 9 + y * y * 3); }
+  petalGeo.computeVertexNormals();
+}
+const petalMesh = new THREE.InstancedMesh(petalGeo, new THREE.MeshStandardMaterial({ side: THREE.DoubleSide, roughness: .6, envMapIntensity: .3 }), PETALS);
+petalMesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
+const petals = [];
+{
+  const pc = [0xff8a12, 0xffb01f, 0xd61f2c, 0xa5121c, 0xfff1d6, 0xff6a00];
+  const col = new THREE.Color();
+  for (let i = 0; i < PETALS; i++) {
+    petals.push({ p: new THREE.Vector3(0, -10, 0), v: new THREE.Vector3(), r: new THREE.Euler(), rv: new THREE.Vector3(), sway: Math.random() * 10, active: false });
+    petalMesh.setColorAt(i, col.set(pc[i % pc.length]));
+  }
+}
+scene.add(petalMesh);
+const pd = new THREE.Object3D();
+let petalBudget = 0;
+function spawnPetal(o, camZ) {
+  o.p.set((Math.random() - .5) * 7, 6 + Math.random() * 3, camZ - 1 - Math.random() * 7);
+  o.v.set((Math.random() - .5) * .2, -(.45 + Math.random() * .4), (Math.random() - .5) * .2);
+  o.r.set(Math.random() * 6, Math.random() * 6, Math.random() * 6);
+  o.rv.set((Math.random() - .5) * 4, (Math.random() - .5) * 4, (Math.random() - .5) * 4);
+  o.active = true;
+}
+window.__shower = (strength = 1) => { if (!reduceMotion) petalBudget += Math.floor(PETALS * .9 * strength); };
+
+/* ------------------------------------------------------------
+   Post-processing: bloom for the lamp glow
+------------------------------------------------------------ */
+const composer = new EffectComposer(renderer);
+composer.addPass(new RenderPass(scene, camera));
+const bloom = new UnrealBloomPass(new THREE.Vector2(innerWidth / 2, innerHeight / 2), .75, .55, .82);
+composer.addPass(bloom);
+composer.addPass(new OutputPass());
+
+/* ------------------------------------------------------------
+   Camera choreography
+------------------------------------------------------------ */
+const portrait = () => innerWidth / innerHeight < .8;
+const P0 = new THREE.Vector3(), L0 = new THREE.Vector3(0, 3.6, 0);
+const P1 = new THREE.Vector3(0, 2.1, 1.6), L1 = new THREE.Vector3(0, 2.9, -10);
+const P2 = new THREE.Vector3(0, 1.9, -5.2), L2 = new THREE.Vector3(0, 2.9, -12.9);
+function layout() {
+  camera.aspect = innerWidth / innerHeight;
+  camera.fov = portrait() ? 64 : 48;
+  P0.set(0, 2.4, portrait() ? 14.5 : 11.5);
+  camera.updateProjectionMatrix();
+  renderer.setSize(innerWidth, innerHeight);
+  composer.setSize(innerWidth, innerHeight);
+  bloom.resolution.set(innerWidth / 2, innerHeight / 2);
+}
+layout();
+addEventListener('resize', layout);
+
+const curPos = P0.clone(), curLook = L0.clone();
+const tmpPos = new THREE.Vector3(), tmpLook = new THREE.Vector3();
+let phase = 'closed', openT = 0;
+const pointer = { x: 0, y: 0, sx: 0, sy: 0 };
+addEventListener('pointermove', e => { pointer.x = e.clientX / innerWidth - .5; pointer.y = e.clientY / innerHeight - .5; });
+
+const ease = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+const easeSine = t => -(Math.cos(Math.PI * t) - 1) / 2;
+const clamp01 = t => Math.max(0, Math.min(1, t));
+
+setDoors(0);
+
+window.__openScene = () => {
+  if (phase !== 'closed') return;
+  if (reduceMotion) { setDoors(1.72); curPos.copy(P1); curLook.copy(L1); phase = 'open'; return; }
+  phase = 'opening'; openT = 0;
+  bells.forEach(b => b.amp = .35);
+};
+
+/* Tap / click the temple doors to open them */
+const raycaster = new THREE.Raycaster();
+const ndc = new THREE.Vector2();
+const doorObjects = doors.map(d => d.pivot);
+function hitsDoor(e) {
+  ndc.set(e.clientX / innerWidth * 2 - 1, -(e.clientY / innerHeight) * 2 + 1);
+  raycaster.setFromCamera(ndc, camera);
+  return raycaster.intersectObjects(doorObjects, true).length > 0;
+}
+canvas.addEventListener('click', e => {
+  if (phase === 'closed' && hitsDoor(e) && window.__enter) window.__enter();
+});
+canvas.addEventListener('pointermove', e => {
+  canvas.style.cursor = phase === 'closed' && hitsDoor(e) ? 'pointer' : 'default';
+});
+
+const scrollProgress = () => {
+  const max = document.documentElement.scrollHeight - innerHeight;
+  return max > 0 ? clamp01(scrollY / max) : 0;
+};
+
+/* ------------------------------------------------------------
+   Render loop
+------------------------------------------------------------ */
+const clock = new THREE.Clock();
+let firstFrame = true;
+function frame() {
+  requestAnimationFrame(frame);
+  const dt = Math.min(clock.getDelta(), .05), t = clock.elapsedTime;
+
+  // flame & light flicker
+  flames.forEach(f => {
+    const n = Math.sin(t * 13 + f.phase) * .5 + Math.sin(t * 23.7 + f.phase * 2) * .3 + Math.sin(t * 7.1 + f.phase) * .2;
+    f.sprite.scale.set(f.base.x * (1 - n * .06), f.base.y * (1 + n * .1), 1);
+  });
+  lights.forEach(l => {
+    const n = Math.sin(t * 9 + l.phase) * .5 + Math.sin(t * 17.3 + l.phase * 3) * .3 + Math.sin(t * 3.1 + l.phase) * .2;
+    l.light.intensity = l.base * (1 + n * .09);
+  });
+
+  // doors + camera path
+  if (phase === 'opening') {
+    openT += dt;
+    setDoors(ease(clamp01((openT - .2) / 3.6)) * 1.72);
+    const c = easeSine(clamp01((openT - .9) / 4.4));
+    curPos.lerpVectors(P0, P1, c); curLook.lerpVectors(L0, L1, c);
+    if (openT > 1.1 && openT - dt <= 1.1) window.__shower(1);
+    if (openT > 5.4) phase = 'open';
+  } else if (phase === 'open') {
+    const s = easeSine(scrollProgress());
+    tmpPos.lerpVectors(P1, P2, s); tmpLook.lerpVectors(L1, L2, s);
+    const k = 1 - Math.exp(-dt * 2.5);
+    curPos.lerp(tmpPos, k); curLook.lerp(tmpLook, k);
+  } else {
+    curPos.copy(P0);
+  }
+  pointer.sx += (pointer.x - pointer.sx) * .04; pointer.sy += (pointer.y - pointer.sy) * .04;
+  const breathe = reduceMotion ? 0 : 1;
+  camera.position.set(
+    curPos.x + pointer.sx * .5 + Math.sin(t * .35) * .04 * breathe,
+    curPos.y - pointer.sy * .25 + Math.sin(t * .5) * .025 * breathe,
+    curPos.z);
+  camera.lookAt(curLook);
+
+  // bells
+  bells.forEach(b => {
+    b.amp = Math.max(.03, b.amp * Math.exp(-dt * .35));
+    b.pivot.rotation.x = Math.sin(t * 2.3 + b.phase) * b.amp;
+    b.pivot.rotation.z = Math.sin(t * 1.7 + b.phase) * b.amp * .35;
+  });
+
+  // dust drift
+  if (!reduceMotion) { dust.rotation.y = Math.sin(t * .05) * .05; dust.position.y = Math.sin(t * .2) * .1; }
+
+  // petals
+  for (let i = 0; i < PETALS; i++) {
+    const o = petals[i];
+    if (!o.active && petalBudget > 0 && Math.random() < .08) { spawnPetal(o, camera.position.z); petalBudget--; }
+    if (o.active) {
+      o.sway += dt;
+      o.p.x += (o.v.x + Math.sin(o.sway * 1.6) * .35) * dt;
+      o.p.y += o.v.y * dt;
+      o.p.z += (o.v.z + Math.cos(o.sway * 1.3) * .2) * dt;
+      o.r.x += o.rv.x * dt; o.r.y += o.rv.y * dt; o.r.z += o.rv.z * dt;
+      if (o.p.y < .02) { o.p.y = .02; o.v.set(0, 0, 0); o.rv.set(0, 0, 0); o.r.x = -Math.PI / 2; o.rest = (o.rest || 0) + dt;
+        if (o.rest > 9) { o.active = false; o.rest = 0; o.p.set(0, -10, 0); } }
+    }
+    pd.position.copy(o.p); pd.rotation.copy(o.r); pd.updateMatrix();
+    petalMesh.setMatrixAt(i, pd.matrix);
+  }
+  petalMesh.instanceMatrix.needsUpdate = true;
+
+  composer.render();
+
+  if (firstFrame) {
+    firstFrame = false;
+    window.__sceneReady = true;
+    if (window.__onSceneReady) window.__onSceneReady();
+  }
+}
+frame();
+</script>
+</body>
+</html>
